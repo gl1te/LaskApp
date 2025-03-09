@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -29,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.newsapp.presentation.news_navigator.components.BottomNavigationItem
 import com.example.newsapp.presentation.news_navigator.components.NewsBottomNavigation
+import com.newsapp.lask.R
 import com.newsapp.lask.domain.model.Article
 import com.newsapp.lask.presentation.bookmark.BookmarkScreen
 import com.newsapp.lask.presentation.bookmark.BookmarkViewModel
@@ -49,15 +52,15 @@ fun NewsNavigator() {
         listOf(
             BottomNavigationItem(
                 icon = Icons.Default.Home,
-                text = "Home"
+                text = R.string.home
             ),
             BottomNavigationItem(
                 icon = Icons.Default.Search,
-                text = "Search"
+                text = R.string.search
             ),
             BottomNavigationItem(
                 icon = Icons.Default.Favorite,
-                text = "Bookmark"
+                text = R.string.Bookmark
             )
         )
     }
@@ -146,8 +149,8 @@ fun NewsNavigator() {
                 val justForYouNewsSecond = viewModel.justForYouNewsSecond.collectAsLazyPagingItems()
                 val state = viewModel.state.value
                 SearchScreen(
-                    justForYouNewsFirst= justForYouNewsFirst,
-                    justForYouNewsSecond= justForYouNewsSecond,
+                    justForYouNewsFirst = justForYouNewsFirst,
+                    justForYouNewsSecond = justForYouNewsSecond,
                     state = state,
                     event = viewModel::onEvent,
                     navigateToDetails = {
@@ -159,37 +162,48 @@ fun NewsNavigator() {
             }
 
             composable(route = Route.DetailsScreen.route) {
-                  val viewModel: DetailsViewModel = hiltViewModel()
-                  if (viewModel.sideEffect != null) {
-                      Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT)
-                          .show()
-                      viewModel.onEvent(DetailsEvent.RemoveSideEffect)
-                  }
-                  navController.previousBackStackEntry?.savedStateHandle?.get<Article?>(
-                      "article"
-                  )
-                      ?.let { article ->
-                          DetailsScreen(
-                              article = article,
-                              onEvent = viewModel::onEvent,
-                              navigateUp = {
-                                  navController.navigateUp()
-                              })
-                      }
+                val viewModel: DetailsViewModel = hiltViewModel()
+                val context = LocalContext.current
+                val isBookmarked =
+                    viewModel.isBookmarked
+
+                val article =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<Article>("article")
+
+                LaunchedEffect(article) {
+                    if (article != null) {
+                        viewModel.initArticle(article)
+                    }
+                }
+
+                viewModel.sideEffect?.let { resId ->
+                    Toast.makeText(context, stringResource(resId), Toast.LENGTH_SHORT).show()
+                    viewModel.onEvent(DetailsEvent.RemoveSideEffect)
+                }
+                article?.let { article ->
+                    DetailsScreen(
+                        article = article,
+                        onEvent = viewModel::onEvent,
+                        navigateUp = {
+                            navController.navigateUp()
+                        },
+                        isBookmarked = isBookmarked
+                    )
+                }
             }
 
             composable(route = Route.BookmarkScreen.route) {
-                 val viewModel: BookmarkViewModel = hiltViewModel()
-                 val state = viewModel.state.value
-                 BookmarkScreen(
-                     state = state,
-                     navigateToDetails = { article ->
-                         navigateToDetails(
-                             navController = navController,
-                             article = article
-                         )
-                     }
-                 )
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                val state = viewModel.state.value
+                BookmarkScreen(
+                    state = state,
+                    navigateToDetails = { article ->
+                        navigateToDetails(
+                            navController = navController,
+                            article = article
+                        )
+                    }
+                )
             }
         }
     }

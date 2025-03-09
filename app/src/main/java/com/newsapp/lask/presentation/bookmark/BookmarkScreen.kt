@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.newsapp.lask.R
@@ -28,7 +29,7 @@ fun BookmarkScreen(
             .fillMaxSize()
     ) {
         Text(
-            text = "Bookmark",
+            text = stringResource(R.string.Bookmark),
             style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold),
             color = colorResource(R.color.text_title),
             modifier = Modifier.padding(top = ExtraSmallPadding4, start = 25.dp)

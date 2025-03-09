@@ -3,11 +3,12 @@ package com.newsapp.lask.data.remote
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.newsapp.lask.domain.model.Article
+import java.util.Locale
 import javax.inject.Inject
 
 class NewsPagingSource @Inject constructor(
     private val newsApi: NewsApi,
-    private val sources: String,
+    private val query: String
 ) : PagingSource<Int, Article>() {
 
     private var totalNewsCount = 0
@@ -20,9 +21,18 @@ class NewsPagingSource @Inject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
+
+        val systemLanguage = Locale.getDefault().language
+
+        val languageCode = when (systemLanguage) {
+            "ru" -> "ru"
+            else -> "en"
+        }
+
         val page = params.key ?: 1
         return try {
-            val newsResponse = newsApi.getNews(sources = sources, page = page)
+            val newsResponse =
+                newsApi.getNews( page = page, language = languageCode, query = query)
             totalNewsCount += newsResponse.articles.size
             val articles = newsResponse.articles.distinctBy { it.title } // Remove duplicates
             LoadResult.Page(

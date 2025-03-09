@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Lask</string>
+    <string name="recent">Недавние</string>
+    <string name="just_for_you">Интересное</string>
+    <string name="article_saved">Новость Сохранена!</string>
+    <string name="article_deleted">Новость Удалена!</string>
+    <string name="search">Поиск</string>
+    <string name="Bookmark">Закладки</string>
+    <string name="home">Главная</string>
+    <string name="nothing_bookmark">Найдите свои новости и узнайте обо всем первыми</string>
+    <string name="server_exception">Сервер недоступен</string>
+    <string name="internet_exception">Интернет недоступен</string>
+    <string name="unknown_exception">Неизвестная ошибка</string>
+
+    <string name="sport_category">Спорт</string>
+    <string name="business_category">Бизнес</string>
+    <string name="politic_category">Политика</string>
+    <string name="technology_category">Технологии</string>
+    <string name="culture_category">Культура</string>
+
+    <string name="login">Логин</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="signup">Регистрация</string>
+    <string name="signup_reg">Зарегистрироваться</string>
+    <string name="confirm_password">Подтвердите Пароль</string>
+    <string name="login_name">Вход</string>
+
+    <string name="password_error_message">Пароль должен состоять не менее чем из 6 символов</string>
+    <string name="password_error_message_digit">Пароль должен содержать как минимум одну букву и цифру</string>
+    <string name="validate_textfield">Это поле пустое! Пожалуйста, заполните его</string>
+    <string name="login_error_message">Логин должен состоять не менее чем из 6 символов</string>
+    <string name="email_error_message">Электронное письмо не может быть пустым</string>
+    <string name="email_error_message_valid">Это не действительная электронная почта</string>
+    <string name="confirm_password_validate">Пароли не совпадают</string>
+    <string name="error_password_mismatch">Пароли не совпадают</string>
+и
+    <string name="onboarding_label">Получайте последние новости и обновления</string>
+
+    <string name="onboarding_description">От политики до развлечений:
+Ваш универсальный источник всестороннего освещения последних новостей и событий по всему миру.</string>
+
+    <string name="onboarding_explore">Найти</string>
+
+    <string name="error_invalid_credentials">Логин или пароль неверны</string>
+    <string name="error_username_taken">Имя пользователя уже занято</string>
+
+</resources>

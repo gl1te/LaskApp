@@ -10,8 +10,8 @@ class SearchNewsUseCase @Inject constructor(
     private val newsRepository: NewsRepository,
 ) {
 
-    operator fun invoke(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
-        return newsRepository.searchNews(searchQuery, sources)
+    operator fun invoke(searchQuery: String): Flow<PagingData<Article>> {
+        return newsRepository.searchNews(searchQuery)
     }
 
 }

@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -37,6 +38,7 @@ import com.newsapp.lask.R
 @Composable
 fun OnBoardingScreen(
     event: (OnBoardingEvent) -> Unit,
+    onComplete: () -> Unit, // Добавляем параметр для навигации
 ) {
     Box(
         modifier = Modifier
@@ -68,7 +70,7 @@ fun OnBoardingScreen(
                 .fillMaxHeight(0.45f)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
-                .background(Color.White)
+                .background(colorResource(id = R.color.input_background))
                 .align(Alignment.BottomCenter)
         ) {
             Column(
@@ -79,18 +81,18 @@ fun OnBoardingScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Get The Latest News\nAnd Updates",
-                    fontSize = 32.sp,
-                    color = Color.Black,
+                    text = stringResource(R.string.onboarding_label),
+                    fontSize = 28.sp,
+                    color = colorResource(id = R.color.text_title),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     lineHeight = 36.sp
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "From Politics to Entertainment:\nYour One-Stop Source for Comprehensive Coverage of the Latest News and Developments Across the Globe will be right in your hand.",
+                    text = stringResource(R.string.onboarding_description),
                     fontSize = 14.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.text_title),
                     textAlign = TextAlign.Center,
                     lineHeight = 20.sp
                 )
@@ -98,7 +100,8 @@ fun OnBoardingScreen(
 
                 Button(
                     onClick = {
-                        event(OnBoardingEvent.SaveAppEntry)
+                        event(OnBoardingEvent.SaveAppEntry) // Сохраняем прохождение онбординга
+                        onComplete() // Переходим к следующему экрану
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(R.color.onboarding_blue)
@@ -112,7 +115,7 @@ fun OnBoardingScreen(
                         horizontalArrangement = Arrangement.Center,
                     ) {
                         Text(
-                            text = "Explore",
+                            text = stringResource(R.string.onboarding_explore),
                             color = Color.White,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold

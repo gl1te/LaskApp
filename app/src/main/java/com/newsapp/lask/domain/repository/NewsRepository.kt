@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    fun getNews(sources: List<String>): Flow<PagingData<Article>>
+    fun getNews(sources: List<String>, query: String): Flow<PagingData<Article>>
 
-    fun searchNews(searchQuery: String, sources: List<String>): Flow<PagingData<Article>>
+    fun searchNews(searchQuery: String): Flow<PagingData<Article>>
 
     suspend fun upsertArticle(article: Article)
 

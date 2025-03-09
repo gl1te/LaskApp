@@ -18,17 +18,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.media3.common.util.UnstableApi
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.newsapp.presentation.details.components.DetailsBottomBar
+import com.newsapp.lask.R
 import com.newsapp.lask.domain.model.Article
 import com.newsapp.lask.presentation.utils.Dimens.ArticleImageHeight
 import com.newsapp.lask.presentation.utils.Dimens.MediumPadding1
@@ -40,11 +42,11 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun DetailsScreen(
     article: Article,
+    isBookmarked: Boolean,
     onEvent: (DetailsEvent) -> Unit,
     navigateUp: () -> Unit,
 ) {
     val context = LocalContext.current
-
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
@@ -66,7 +68,7 @@ fun DetailsScreen(
                 Text(
                     text = article.title,
                     style = MaterialTheme.typography.displaySmall,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.text_title),
                     fontWeight = FontWeight.Bold,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -74,14 +76,14 @@ fun DetailsScreen(
                 Text(
                     text = article.description,
                     fontSize = 18.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.text_title),
                     lineHeight = 20.sp
                 )
                 Spacer(modifier = Modifier.height(MediumPadding1))
                 Text(
                     text = article.content,
                     fontSize = 18.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.text_title),
                     lineHeight = 20.sp
                 )
                 Spacer(modifier = Modifier.height(MediumPadding1))
@@ -90,14 +92,14 @@ fun DetailsScreen(
                     Text(
                         text = it,
                         fontSize = 18.sp,
-                        color = Color.DarkGray,
+                        color = colorResource(id = R.color.text_title),
                         lineHeight = 20.sp
                     )
                 }
                 Text(
                     text = formatDateTime(article.publishedAt),
                     fontSize = 18.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.text_title),
                     lineHeight = 20.sp
                 )
 
@@ -110,6 +112,7 @@ fun DetailsScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(bottom = 10.dp),
+            isBookmarked = isBookmarked, // Передаем состояние из ViewModel
             onBrowsingClick = {
                 Intent(Intent.ACTION_VIEW).also {
                     it.data = Uri.parse(article.url)
@@ -132,10 +135,11 @@ fun DetailsScreen(
             },
             onBackClick = {
                 navigateUp()
-            }
+            },
+
         )
-        Spacer(modifier = Modifier.height(10.dp))
     }
+    Spacer(modifier = Modifier.height(10.dp))
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

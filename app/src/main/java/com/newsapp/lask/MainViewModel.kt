@@ -1,5 +1,6 @@
 package com.newsapp.lask
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,22 +17,30 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val appEntryUseCases: AppEntryUseCases,
+    private val sharedPreferences: SharedPreferences // Добавляем SharedPreferences для проверки JWT
 ) : ViewModel() {
     var splashCondition by mutableStateOf(true)
         private set
-
 
     var startDestination by mutableStateOf(Route.AppStartNavigation.route)
         private set
 
     init {
         appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
+            // Проверяем, пройден ли онбординг
             if (shouldStartFromHomeScreen) {
-                startDestination = Route.NewsNavigation.route
+                // Проверяем, авторизован ли пользователь
+                val isLoggedIn = sharedPreferences.getString("jwt", null) != null
+                startDestination = if (isLoggedIn) {
+                    Route.NewsNavigation.route
+                } else {
+                    Route.AuthNavigation.route
+                }
             } else {
+                // Онбординг еще не пройден
                 startDestination = Route.AppStartNavigation.route
             }
-            delay(300)
+            delay(300) // Задержка для сплеш-скрина
             splashCondition = false
         }.launchIn(viewModelScope)
     }

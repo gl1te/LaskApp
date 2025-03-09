@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.newsapp.lask"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -91,6 +91,7 @@ dependencies {
 
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1")
 
     implementation ("androidx.room:room-runtime:2.6.1")
     kapt ("androidx.room:room-compiler:2.6.1")

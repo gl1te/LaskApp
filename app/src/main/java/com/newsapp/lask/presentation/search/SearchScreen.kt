@@ -32,6 +32,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.newsapp.lask.R
 import com.newsapp.lask.domain.model.Article
+import com.newsapp.lask.presentation.common.CategoryList
 import com.newsapp.lask.presentation.common.EmptyScreen
 import com.newsapp.lask.presentation.common.RectangleArticlesList
 import com.newsapp.lask.presentation.common.SearchBar
@@ -145,21 +146,44 @@ fun SearchScreen(
                 }
             )
             Spacer(modifier = Modifier.height(ExtraSmallPadding3))
-
-            if (state.articles == null) {
-                RectangleArticlesList(
-                    articles = justForYouNewsFirst,
-                    onClick = { navigateToDetails(it) })
+            Box(modifier = Modifier.fillMaxWidth()) {
+                CategoryList(
+                    onCategoryClick = {
+                        event(SearchEvent.UpdateCategory(it))
+                    }
+                )
             }
 
-            state.articles?.let {
-                val articles = it.collectAsLazyPagingItems()
-                RectangleArticlesList(articles = articles, onClick = {
-                    navigateToDetails(it)
-                })
+            Spacer(modifier = Modifier.height(ExtraSmallPadding3))
+            when {
+                // Показываем статьи по категории, если они есть
+                state.articlesCategory != null -> {
+                    state.articlesCategory?.let { flow ->
+                        val articles = flow.collectAsLazyPagingItems()
+                        RectangleArticlesList(
+                            articles = articles,
+                            onClick = { navigateToDetails(it) }
+                        )
+                    }
+                }
+                // Показываем статьи по поиску, если они есть
+                state.articles != null -> {
+                    state.articles?.let { flow ->
+                        val articles = flow.collectAsLazyPagingItems()
+                        RectangleArticlesList(
+                            articles = articles,
+                            onClick = { navigateToDetails(it) }
+                        )
+                    }
+                }
+                // Если ничего нет, показываем список по умолчанию
+                else -> {
+                    RectangleArticlesList(
+                        articles = justForYouNewsFirst,
+                        onClick = { navigateToDetails(it) }
+                    )
+                }
             }
-
-
         }
     }
 }

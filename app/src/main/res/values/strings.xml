@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">Lask</string>
+    <string name="recent">Recent</string>
+    <string name="just_for_you">Interesting</string>
+    <string name="article_saved">Article Saved!</string>
+    <string name="article_deleted">Article Deleted!</string>
+    <string name="search">Search</string>
+    <string name="Bookmark">Bookamark</string>
+    <string name="home">Home</string>
+    <string name="nothing_bookmark">Find your news and be the first to know everything</string>
+    <string name="server_exception">Server Unavailable</string>
+    <string name="internet_exception">Internet Unavailable</string>
+    <string name="unknown_exception">Unknown Error</string>
+
+    <string name="sport_category">Sport</string>
+    <string name="business_category">Business</string>
+    <string name="politic_category">Politic</string>
+    <string name="technology_category">Technology</string>
+    <string name="culture_category">Culture</string>
+
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign up</string>
+    <string name="signup_reg">Sign up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login_name">Login</string>
+
+    <string name="password_error_message">The password needs to consist of at least 6 characters</string>
+    <string name="password_error_message_digit">The password need to contain at least one letter and digit</string>
+    <string name="validate_textfield">This field is blank! Pleas fill it</string>
+    <string name="login_error_message">The login needs to consist of at least 6 characters</string>
+    <string name="email_error_message">The email can\'t be blank</string>
+    <string name="email_error_message_valid">That\'s not a valid email</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="confirm_password_validate">Passwords do not match</string>
+
+    <string name="onboarding_description">From Politics to Entertainment:
+Your One-Stop Source for Comprehensive Coverage of the Latest News and Developments Across the Globe will be right in your hand.</string>
+    <string name="onboarding_label">Get The Latest News
+And Updates</string>
+    <string name="onboarding_explore">Explore</string>
+
+    <string name="error_invalid_credentials">Login or password is incorrect</string> <!-- Для логина -->
+    <string name="error_username_taken">Username is already taken</string>
+
 </resources>

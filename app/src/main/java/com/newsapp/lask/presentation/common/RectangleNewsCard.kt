@@ -74,7 +74,7 @@ fun RectangleNewsCard(
             Text(
                 text = article.title,
                 fontSize = 16.sp,
-                color = Color.Black,
+                color = colorResource(id = R.color.text_title),
                 fontWeight = FontWeight.Bold,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis
@@ -90,7 +90,7 @@ fun RectangleNewsCard(
                 Text(
                     text = formatDateTime(article.publishedAt),
                     fontSize = 12.sp,
-                    color = Color.DarkGray,
+                    color = colorResource(id = R.color.text_title),
                     lineHeight = 20.sp
                 )
             }

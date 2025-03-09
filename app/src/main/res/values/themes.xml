@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Тема для splash-экрана в светлом режиме -->
+    <style name="App.Starting.Theme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.NewsApp</item>
+    </style>
 
-    <style name="Theme.Lask" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Основная тема приложения -->
+    <style name="Theme.NewsApp" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
 </resources>

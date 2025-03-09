@@ -26,9 +26,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -110,7 +110,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(MediumPadding1))
             SearchBar(
                 modifier = Modifier.padding(horizontal = MediumPadding1),
-                text = "",
+                text = stringResource(R.string.search),
                 readOnly = true,
                 onValueChange = {},
                 onClick = {
@@ -169,6 +169,16 @@ fun HomeScreen(
             }
 
             item {
+                Text(
+                    text = stringResource(R.string.recent),
+                    fontSize = 24.sp,
+                    color = colorResource(id = R.color.text_title),
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 25.dp, top = 15.dp)
+                )
+            }
+
+            item {
                 ArticlesList(
                     articles,
                     onClick = {
@@ -178,9 +188,9 @@ fun HomeScreen(
             }
             item {
                 Text(
-                    text = "Just For You",
+                    text = stringResource(R.string.just_for_you),
                     fontSize = 24.sp,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.text_title),
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 25.dp, top = 15.dp)
                 )

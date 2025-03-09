@@ -17,8 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.newsapp.lask.presentation.navgraph.NavGraph
-import com.newsapp.lask.presentation.navgraph.Route
-import com.newsapp.lask.presentation.onboarding.OnBoardingScreen
 import com.newsapp.lask.presentation.ui.theme.LaskTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,11 +26,15 @@ import com.newsapp.lask.R
 @Composable
 fun DetailsBottomBar(
     modifier: Modifier = Modifier,
+    isBookmarked: Boolean,
     onBrowsingClick: () -> Unit,
     onShareClick: () -> Unit,
     onBookmarkClick: () -> Unit,
     onBackClick: () -> Unit,
 ) {
+
+    val switchIcon by remember { mutableStateOf(false) }
+
     BottomAppBar(
         modifier = modifier
             .height(56.dp),
@@ -49,9 +55,14 @@ fun DetailsBottomBar(
                     modifier = Modifier.size(22.dp)
                 )
             }
-            IconButton(onClick = {onBookmarkClick()}) {
+            IconButton(onClick = {
+                onBookmarkClick()
+                switchIcon != switchIcon
+            }) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_bookmark),
+                    painter = painterResource(
+                        if (isBookmarked) R.drawable.baseline_bookmark_24 else R.drawable.ic_bookmark
+                    ),
                     contentDescription = "Bookmark",
                     modifier = Modifier.size(22.dp)
                 )

@@ -1,5 +1,6 @@
 package com.example.newsapp.presentation.news_navigator.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,10 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.newsapp.lask.R
 import com.newsapp.lask.presentation.utils.Dimens.ExtraSmallPadding2
 
 @Composable
@@ -51,17 +54,18 @@ fun NewsBottomNavigation(
                         )
                         Spacer(modifier = Modifier.height(ExtraSmallPadding2))
                         Text(
-                            text = item.text,
+                            text = stringResource(item.text),
                             style = MaterialTheme.typography.labelSmall,
-                            fontSize = 12.sp
+                            fontSize = 12.sp,
+                            color = colorResource(id = R.color.text_title)
                         )
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.Black,
-                    selectedTextColor = Color.Black,
-                    unselectedIconColor = Color.Black,
-                    unselectedTextColor = Color.Black,
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = colorResource(id = R.color.body),
+                    unselectedTextColor = colorResource(id = R.color.body),
                     indicatorColor = MaterialTheme.colorScheme.background
                 )
             )
@@ -71,5 +75,5 @@ fun NewsBottomNavigation(
 
 data class BottomNavigationItem(
     val icon: ImageVector,
-    val text: String,
+    @StringRes val text: Int,
 )
