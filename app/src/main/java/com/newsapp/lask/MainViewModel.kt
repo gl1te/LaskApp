@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val appEntryUseCases: AppEntryUseCases,
-    private val sharedPreferences: SharedPreferences // Добавляем SharedPreferences для проверки JWT
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
     var splashCondition by mutableStateOf(true)
         private set
