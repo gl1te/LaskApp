@@ -27,9 +27,7 @@ class MainViewModel @Inject constructor(
 
     init {
         appEntryUseCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
-            // Проверяем, пройден ли онбординг
             if (shouldStartFromHomeScreen) {
-                // Проверяем, авторизован ли пользователь
                 val isLoggedIn = sharedPreferences.getString("jwt", null) != null
                 startDestination = if (isLoggedIn) {
                     Route.NewsNavigation.route
@@ -37,10 +35,10 @@ class MainViewModel @Inject constructor(
                     Route.AuthNavigation.route
                 }
             } else {
-                // Онбординг еще не пройден
+
                 startDestination = Route.AppStartNavigation.route
             }
-            delay(300) // Задержка для сплеш-скрина
+            delay(300)
             splashCondition = false
         }.launchIn(viewModelScope)
     }

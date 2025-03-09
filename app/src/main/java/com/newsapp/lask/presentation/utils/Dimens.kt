@@ -6,21 +6,11 @@ object Dimens {
 
     val MediumPadding1 = 24.dp
 
-    val MediumPadding2 = 30.dp
-
-    val IndicatorSize = 14.dp
-
-    val PagerIndicatorWidth = 52.dp
-
     val ArticleCardSize = 200.dp
 
     val ArticleCardSizeSmall = 120.dp
 
     val ArticleCardSizeHeight = 320.dp
-
-    val ArticleCardSizeWidthSmall = 320.dp
-
-    val ExtraSmallPadding = 3.dp
 
     val ExtraSmallPadding2 = 6.dp
 

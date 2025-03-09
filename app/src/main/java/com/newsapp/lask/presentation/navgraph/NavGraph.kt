@@ -24,7 +24,6 @@ fun NavGraph(
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = startDestination) {
-        // Онбординг
         navigation(
             route = Route.AppStartNavigation.route,
             startDestination = Route.OnBoardingScreen.route
@@ -34,7 +33,6 @@ fun NavGraph(
                 OnBoardingScreen(
                     event = viewModel::onEvent,
                     onComplete = {
-                        // После онбординга переходим к аутентификации
                         navController.navigate(Route.AuthNavigation.route) {
                             popUpTo(Route.AppStartNavigation.route) { inclusive = true }
                         }
@@ -43,7 +41,6 @@ fun NavGraph(
             }
         }
 
-        // Аутентификация (Login и SignUp)
         navigation(
             route = Route.AuthNavigation.route,
             startDestination = Route.LoginScreen.route
@@ -53,13 +50,11 @@ fun NavGraph(
                 LoginScreen(
                     viewModel = viewModel,
                     navigateHomeScreen = {
-                        // Успешный логин -> Новости
                         navController.navigate(Route.NewsNavigation.route) {
                             popUpTo(Route.AuthNavigation.route) { inclusive = true }
                         }
                     },
                     navigateToSignUp = {
-                        // Переход к регистрации
                         navController.navigate(Route.SignUpScreen.route)
                     }
                 )
@@ -69,13 +64,11 @@ fun NavGraph(
                 SignUpScreen(
                     viewModel = viewModel,
                     navigateToLogin = {
-                        // После регистрации -> Логин
                         navController.navigate(Route.LoginScreen.route) {
                             popUpTo(Route.SignUpScreen.route) { inclusive = true }
                         }
                     },
                     navigateHomeScreen = {
-                        // Успешная регистрация -> Новости
                         navController.navigate(Route.NewsNavigation.route) {
                             popUpTo(Route.AuthNavigation.route) { inclusive = true }
                         }
@@ -83,8 +76,6 @@ fun NavGraph(
                 )
             }
         }
-
-        // Новости
         navigation(
             route = Route.NewsNavigation.route,
             startDestination = Route.NewsNavigatorScreen.route

@@ -1,7 +1,5 @@
 package com.newsapp.lask.presentation.signup
 
-import com.example.practice.presentation.login.LoginEvent
-
 sealed class SignUpEvent {
     data class LoginChanged(val login: String) : SignUpEvent()
     data class EmailChanged(val email: String) : SignUpEvent()

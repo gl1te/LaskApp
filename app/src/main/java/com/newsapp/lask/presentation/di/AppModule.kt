@@ -8,9 +8,6 @@ import androidx.room.Room
 import com.example.newsapp.data.local.NewsDao
 import com.example.newsapp.data.local.NewsDatabase
 import com.example.newsapp.data.local.NewsTypeConverter
-import com.newsapp.lask.domain.usecases.validate_usecases.ValidateEmailUseCase
-import com.newsapp.lask.domain.usecases.validate_usecases.ValidatePasswordUseCase
-import com.newsapp.lask.domain.usecases.validate_usecases.ValidateTextFieldUseCase
 import com.newsapp.lask.data.manager.LocalUserManagerImpl
 import com.newsapp.lask.data.remote.AuthApi
 import com.newsapp.lask.data.remote.NewsApi
@@ -41,7 +38,10 @@ import com.newsapp.lask.domain.usecases.news_db_use_cases.UpsertArticle
 import com.newsapp.lask.domain.usecases.news_usecases.GetNewsUseCase
 import com.newsapp.lask.domain.usecases.news_usecases.SearchNewsUseCase
 import com.newsapp.lask.domain.usecases.validate_usecases.ValidateConfirmPasswordUseCase
+import com.newsapp.lask.domain.usecases.validate_usecases.ValidateEmailUseCase
 import com.newsapp.lask.domain.usecases.validate_usecases.ValidateLoginUseCase
+import com.newsapp.lask.domain.usecases.validate_usecases.ValidatePasswordUseCase
+import com.newsapp.lask.domain.usecases.validate_usecases.ValidateTextFieldUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -165,7 +165,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAppLoginIseCases(localUserManager: LocalUserManager): AppLoginUseCases{
+    fun provideAppLoginIseCases(localUserManager: LocalUserManager): AppLoginUseCases {
         return AppLoginUseCases(
             saveAppLoginUseCase = SaveAppLoginUseCase(localUserManager),
             readAppLoginUseCase = ReadAppLoginUseCase(localUserManager)

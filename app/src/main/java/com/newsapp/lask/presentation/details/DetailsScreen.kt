@@ -25,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.media3.common.util.UnstableApi
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -112,7 +111,7 @@ fun DetailsScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .padding(bottom = 10.dp),
-            isBookmarked = isBookmarked, // Передаем состояние из ViewModel
+            isBookmarked = isBookmarked,
             onBrowsingClick = {
                 Intent(Intent.ACTION_VIEW).also {
                     it.data = Uri.parse(article.url)
@@ -137,7 +136,7 @@ fun DetailsScreen(
                 navigateUp()
             },
 
-        )
+            )
     }
     Spacer(modifier = Modifier.height(10.dp))
 }

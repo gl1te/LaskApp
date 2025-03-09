@@ -44,7 +44,7 @@ class SearchViewModel @Inject constructor(
             is SearchEvent.UpdateCategory -> {
                 _state.value = state.value.copy(
                     category = event.category,
-                    articles = null // Сбрасываем articles при выборе категории
+                    articles = null
                 )
                 searchNewsByCategory()
             }
@@ -57,7 +57,7 @@ class SearchViewModel @Inject constructor(
 
     private fun searchNews() {
         if (state.value.searchQuery.isBlank()) {
-            return // Ничего не делаем при пустом запросе
+            return
         }
         val articles = newsUseCases.searchNewsUseCase(
             searchQuery = state.value.searchQuery,

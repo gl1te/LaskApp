@@ -156,7 +156,6 @@ fun SearchScreen(
 
             Spacer(modifier = Modifier.height(ExtraSmallPadding3))
             when {
-                // Показываем статьи по категории, если они есть
                 state.articlesCategory != null -> {
                     state.articlesCategory?.let { flow ->
                         val articles = flow.collectAsLazyPagingItems()
@@ -166,7 +165,6 @@ fun SearchScreen(
                         )
                     }
                 }
-                // Показываем статьи по поиску, если они есть
                 state.articles != null -> {
                     state.articles?.let { flow ->
                         val articles = flow.collectAsLazyPagingItems()
@@ -176,7 +174,6 @@ fun SearchScreen(
                         )
                     }
                 }
-                // Если ничего нет, показываем список по умолчанию
                 else -> {
                     RectangleArticlesList(
                         articles = justForYouNewsFirst,

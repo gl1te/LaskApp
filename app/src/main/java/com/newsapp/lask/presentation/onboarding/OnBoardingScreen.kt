@@ -38,7 +38,7 @@ import com.newsapp.lask.R
 @Composable
 fun OnBoardingScreen(
     event: (OnBoardingEvent) -> Unit,
-    onComplete: () -> Unit, // Добавляем параметр для навигации
+    onComplete: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -100,8 +100,8 @@ fun OnBoardingScreen(
 
                 Button(
                     onClick = {
-                        event(OnBoardingEvent.SaveAppEntry) // Сохраняем прохождение онбординга
-                        onComplete() // Переходим к следующему экрану
+                        event(OnBoardingEvent.SaveAppEntry)
+                        onComplete()
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(R.color.onboarding_blue)

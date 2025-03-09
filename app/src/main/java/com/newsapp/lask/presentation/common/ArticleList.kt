@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.newsapp.lask.domain.model.Article
-import com.newsapp.lask.presentation.utils.Dimens.ExtraSmallPadding2
 import com.newsapp.lask.presentation.utils.Dimens.MediumPadding1
 
 @RequiresApi(Build.VERSION_CODES.O)
