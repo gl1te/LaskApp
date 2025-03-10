@@ -14,5 +14,5 @@ object Constants {
 
     const val NEWS_DATABASE_NAME = "newsDatabase"
 
-    const val   BASE_URL_AUTH = "http://192.168.100.6:8080/"
+    const val BASE_URL_AUTH = "http://192.168.37.25:8080/"
 }

@@ -179,7 +179,7 @@ fun LoginScreen(
         ) {
             Text(
                 text = stringResource(R.string.login),
-                color = colorResource(id = R.color.text_title),
+                color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )

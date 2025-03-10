@@ -32,10 +32,6 @@ import androidx.compose.ui.unit.dp
 import com.newsapp.lask.R
 import com.newsapp.lask.presentation.utils.Dimens.ArticleCardSize
 import com.newsapp.lask.presentation.utils.Dimens.ArticleCardSizeSmall
-import com.newsapp.lask.presentation.utils.Dimens.ExtraSmallPadding
-import com.newsapp.lask.presentation.utils.Dimens.ExtraSmallPadding3
-import com.newsapp.lask.presentation.utils.Dimens.MediumPadding1
-import com.newsapp.lask.presentation.utils.Dimens.MediumPadding2
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.shimmerEffect() = composed {
@@ -126,7 +122,7 @@ fun ArticleCardShimmerEffectRectangle(
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(30.dp)
-                        .padding(top = 5.dp,end = 25.dp)
+                        .padding(top = 5.dp, end = 25.dp)
                         .clip(MaterialTheme.shapes.medium)
                         .shimmerEffect()
                 )
